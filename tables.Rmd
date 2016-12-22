@@ -1,0 +1,115 @@
+---
+title: "Untitled"
+author: "nana"
+date: "12/20/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+```{r }
+my_data <- head(iris)
+names(my_data) <- c(letters[1:ncol(iris)])
+library("knitr")
+kable(my_data)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+```{r table, echo=FALSE}
+library("xtable")
+print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
+```
+
+
+```{ echo=FALSE}
+library(xtable)
+print(xtable(my_data), type = 'html')
+```
+
+
+
+```{ echo=FALSE}
+library(xtable)
+print(xtable(my_data), type = 'html', html.table.attributes = '')
+```
+
+
+
+```{ echo=FALSE}
+library("pander")
+pandoc.table(my_data)
+```
+
+
+
+```{ echo=FALSE}
+library("pander")
+pandoc.table(my_data, split.cells = 5)
+```
+
+
+
+```{ echo=FALSE}
+pander::panderOptions('table.split.table', 350)
+pander::pandoc.table(my_data, style="rmarkdown")
+```
+
+
+```{ echo=FALSE}
+library("ascii")
+print(ascii(my_data), type = 'pandoc')
+```
+
+
+```{ echo=FALSE}
+library("htmlTable")
+htmlTable(my_data, col.rgroup = c("none", "#F7F7F7"))
+```
+
+```{ echo=FALSE}
+library(hwriter)
+hwrite(my_data, border=0)
+```
+
+
+```{ echo=FALSE}
+library(hwriter)
+cat(hwrite(my_data, border = 0, center=TRUE, table.frame='void', width='300px', table.style='padding: 50px', row.names=FALSE, row.style=list('font-weight:bold')))
+```
+
+
+```{table}
+options(digits = 4)
+set.seed(123)
+x = matrix(rnorm(40), 5)
+x
+dimnames(x) = list(NULL, head(LETTERS, ncol(x)))
+x
+# further customization via kable(), e.g. digits and captions
+knitr::kable(x, digits = 2, caption = 'A table produced by printr.')
+```
